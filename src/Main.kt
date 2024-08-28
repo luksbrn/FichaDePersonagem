@@ -56,13 +56,20 @@ fun main() {
 
         println("Quantos pontos deseja adicionar em $atributoEscolhido? (Máximo $pontosDisponiveis)")
         val pontos = readLine()?.toIntOrNull() ?: 0
-        if (pontos in 1..pontosDisponiveis) {
-            atributos[atributoEscolhido] = atributos[atributoEscolhido]!! + pontos
+
+        val novoValor = atributos[atributoEscolhido]!! + pontos
+        if (pontos in 1..pontosDisponiveis && novoValor <= 20) {
+            atributos[atributoEscolhido] = novoValor
             pontosDisponiveis -= pontos
         } else {
-            println("Número inválido de pontos.")
+            if (novoValor > 20) {
+                println("O atributo $atributoEscolhido não pode ultrapassar 20 pontos.")
+            } else {
+                println("Número inválido de pontos.")
+            }
         }
     }
+
 
 
     println("Distribuição de pontos concluída.")
